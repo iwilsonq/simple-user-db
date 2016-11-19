@@ -9,9 +9,13 @@ before(done => {
     .on('error', error => console.warn('Warning', error));
 });
 
-beforeEach(() => {
-  mongoose.connection.collections.users.drop(done => {
-    // Ready to run the next test!
-    return done;
+beforeEach(done => {
+  const { users, comments, blogposts } = mongoose.connection.collections;
+  users.drop(() => {
+    comments.drop(() => {
+      blogposts.drop(() => {
+        done();
+      })
+    })
   });
 });

@@ -15,8 +15,7 @@ describe('Deleting a user', () => {
       .then(user => {
         assert(user === null);
         done();
-      })
-
+      });
   });
 
   it('class method remove', done => {
